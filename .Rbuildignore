@@ -1,0 +1,5 @@
+^\.travis\.yml$
+^Makefile$
+^tests/testthat/figlet.*$
+^build_sysdata\.R$
+^README\.Rmd$

@@ -1,0 +1,6 @@
+.Rproj.user
+.Rhistory
+.RData
+tests/testthat/*gz
+tests/testthat/figlet/
+*.gz

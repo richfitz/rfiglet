@@ -1,0 +1,39 @@
+# rfiglet
+
+[![Build Status](https://travis-ci.org/richfitz/rfiglet.png?branch=master)](https://travis-ci.org/richfitz/rfiglet)
+
+```{r}
+message(figlet("FIGlet"))
+```
+
+## Fonts
+
+There are many FIGlet compatible fonts; to keep things small, this package only includes the included by FIGlet
+
+* banner
+* big
+* block
+* bubble
+* digital
+* ivrit
+* lean
+* mini
+* mnemonic
+* script
+* shadow
+* slant
+* small
+* smscript
+* smshadow
+* smslant
+* standard
+* term
+
+## Examples
+
+```{r, echo=FALSE}
+for (font in figlet_fonts()) {
+  message(font, ":")
+  message(figlet(font, font))
+}
+```
