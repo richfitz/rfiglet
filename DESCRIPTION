@@ -2,9 +2,9 @@ Package: rfiglet
 Title: Port of FIGlet to R
 Version: 0.1.0
 Authors@R: "Rich FitzJohn <rich.fitzjohn@gmail.com> [aut, cre]"
-Description: Makes letters bigger
+Description: Embiggens letters
 Depends: R (>= 3.1.2)
 License: GPL-2
 LazyData: true
-Imports: bitops
-Suggests: testthat
+Imports: bitops, rappdirs
+Suggests: testthat, downloader

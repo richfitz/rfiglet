@@ -29,10 +29,12 @@ There are many FIGlet compatible fonts; to keep things small, this package only 
 * standard
 * term
 
+You can install an additional `r length(figlet_fonts()) - length(figlet_base_fonts())` fonts from [this repo](https://github.com/cmatsuoka/figlet-fonts) by using `rfiglet::install_fonts()`; this will take about 85MB of disk space.
+
 ## Examples
 
 ```{r, echo=FALSE}
-for (font in figlet_fonts()) {
+for (font in figlet_base_fonts()) {
   message(font, ":")
   message(figlet(font, font))
 }

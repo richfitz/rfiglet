@@ -106,9 +106,15 @@ as.character.figlet_string <- function(x, ...) {
     ##     ) + buffer[row]
   # }
 
-  ret <- gsub(x$font$options$hard_blank, " ", x$string, fixed=TRUE)
+  ret <- iconv(x$string, "UTF-8")
+  ret <- gsub(x$font$options$hard_blank, " ", ret, fixed=TRUE)
   ret <- paste(ret, collapse="\n")
   ret
+}
+
+##' @export
+print.figlet_string <- function(x, ...) {
+  cat(as.character(x), sep="\n")
 }
 
 ## The kerning/smushing engine.  Considerable room for cleaning.  This

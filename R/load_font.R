@@ -1,15 +1,66 @@
 font_cache <- new.env(parent=emptyenv())
 
-figlet_font <- function(font) {
-  if (exists(font, font_cache)) {
-    return(font_cache[[font]])
+figlet_font_name <- function(font, collection=NULL) {
+  if (inherits(font, "figlet_font_name")) {
+    return(font)
+  }
+  if (grepl("::", font, fixed=TRUE)) {
+    tmp <- strsplit(font, "::", fixed=TRUE)[[1]]
+    collection <- tmp[[1]]
+    if (collection == "") {
+      collection <- "ours"
+    }
+    key <- font
+    font <- tmp[[2]]
+  } else {
+    d <- load_figlet_data()
+    if (is.null(collection)) {
+      i <- match(font, d$name)
+      collection <- d$collection[i]
+    }
+    key <- paste(collection, font, sep="::")
+  }
+  attr(key, "name") <- font
+  attr(key, "collection") <- collection
+  class(key) <- "figlet_font_name"
+  key
+}
+
+## TODO: logic around path here is a bit broken.
+figlet_font_filename <- function(font, path=NULL) {
+  if (inherits(font, "figlet_font_name")) {
+    collection <- attr(font, "collection")
+    font <- attr(font, "name")
+    if (collection == "ours") {
+      path <- system.file("fonts", package=.packageName)
+    } else {
+      path <- file.path(font_path(), collection)
+    }
+  } else if (is.null(path)) {
+    path <- system.file("fonts", package=.packageName)
   }
 
-  data <- figlet_font_load(figlet_font_read(font))
+  extensions <- c("tlf", "flf")
+  pos <- file.path(path, paste(font, extensions, sep="."))
+  pos <- pos[file.exists(pos)]
+  if (length(pos) == 0L) {
+    stop("Font not found") # TODO: class error
+  }
+  pos[[1]]
+}
+
+## Duplicate font names are a problem here:
+figlet_font <- function(font, collection=NULL) {
+  key <- figlet_font_name(font, collection)
+  if (exists(key, font_cache)) {
+    return(font_cache[[key]])
+  }
+
+  data <- figlet_font_load(figlet_font_read(key))
   options <- data$options
   chars <- figlet_font_load_characters(data$data, options$height)
   w <- function(x) {
-    if (is.null(x)) NA_integer_ else max(nchar(x))
+    if (is.null(x)) NA_integer_ else as.integer(max(nchar(x)))
   }
   width <- vapply(chars, w, integer(1))
   ret <- list(font=font,
@@ -19,14 +70,14 @@ figlet_font <- function(font) {
               options=options)
   class(ret) <- "figlet_font"
 
-  assign(font, ret, envir=font_cache)
+  assign(key, ret, envir=font_cache)
 
   ret
 }
 
-as.figlet_font <- function(x) {
+as.figlet_font <- function(x, collection=NULL) {
   if (is.character(x)) {
-    x <- figlet_font(x)
+    x <- figlet_font(x, collection)
   } else if (!inherits(x, "figlet_font")) {
     stop("Can't convert to a figlet_font")
   }
@@ -51,24 +102,22 @@ figlet_font_load <- function(data) {
 
   msg <- max(0L, length(nms) - length(header))
   if (msg > 0L) {
-    header <- c(header, rep(list(NA), msg))
+    header <- c(header, rep(list(NA_integer_), msg))
   }
 
   ret <- as.list(header[seq_along(nms)])
   ret[-1] <- lapply(ret[-1], as.integer)
   names(ret) <- nms
 
-  # if the new layout style isn't available,
-  # convert old layout style. backwards compatability
+  ## if the new layout style isn't available,
+  ## convert old layout style. backwards compatability
   if (is.na(ret$full_layout)) {
     if (ret$old_layout == 0L) {
-      ret$full_layout <- 64
+      ret$full_layout <- 64L
     } else if (ret$old_layout < 0L) {
-      ret$full_layout <- 0
+      ret$full_layout <- 0L
     } else {
-      ## TODO: drop this for simple modulo stuff?
-      ret$full_layout <-
-        bitops::bitOr(bitops::bitAnd(ret$old_layout, 31), 128)
+      ret$full_layout <- as.integer((ret$old_layout %&% 31L) %|% 128L)
     }
   }
 
@@ -87,7 +136,12 @@ figlet_font_load <- function(data) {
 
 figlet_font_load_char <- function(x, height) {
   re_end_marker <- '.*?(.)\\s*$'
-  re_end <- sprintf("[%s]{1,2}$", sub(re_end_marker, "\\1", x[[1]]))
+  char <- sub(re_end_marker, "\\1", x[[1]])
+  ## Corner case triggered by toilet::emboss
+  if (identical(char, "^")) {
+    char <- "\\^"
+  }
+  re_end <- sprintf("[%s]{1,2}$", char)
   sub(re_end, "", x)
 }
 
@@ -109,24 +163,25 @@ figlet_font_load_characters <- function(data, height) {
   chars[code_req] <- lapply(seq_along(code_req), f, dat_req)
 
   ## Then, extra:
-  dat_extra <- matrix(data[-i_req], height + 1L)
-  name_extra <- dat_extra[1, ]
-  char_extra <- lapply(seq_len(ncol(dat_extra)), f,
-                       dat_extra[-1, , drop=FALSE])
-  code_extra <- as.integer(sub("\\s+.*$", "", name_extra))
+  tmp <- data[-i_req]
+  rem <- length(tmp) %% (height + 1L)
+  if (rem == 0L) {
+    dat_extra <- matrix(data[-i_req], height + 1L)
+    name_extra <- dat_extra[1, ]
+    char_extra <- lapply(seq_len(ncol(dat_extra)), f,
+                         dat_extra[-1, , drop=FALSE])
+    code_extra <- as.integer(sub("\\s+.*$", "", name_extra))
 
-  ## This avoids the null character present in 5x7 at least.
-  keep <- code_extra > 0
-  chars[code_extra[keep]] <- char_extra[keep]
+    ## This avoids the null character present in 5x7 at least.
+    keep <- code_extra > 0
+    chars[code_extra[keep]] <- char_extra[keep]
+  } else {
+    ## TODO: get the filename here...
+    warning("Discarding extra characters", immediate.=TRUE)
+  }
 
   chars
 }
-
-## Not implemented:
-##   isValidFont
-##   getFonts
-##   infoFont
-##   classed errors
 
 ## TODO: print in figlet style...
 ##' @export
@@ -134,17 +189,9 @@ print.figlet_font <- function(x, ...) {
   print(sprintf("<figlet_font object: %s>", x$font))
 }
 
-## This should allow loading user-procided fonts, of course, with a
-## PATH argument or similar...
-## TODO: to implement some of the bits below, factor out the filename bit.
-figlet_font_read <- function(font) {
-  extensions <- c("tlf", "flf")
-  pos <- system.file(sprintf("fonts/%s.%s", font, extensions),
-                     package=.packageName)
-  if (length(pos) == 0L) {
-    stop("Font not found") # TODO: class error
-  }
-  str <- readLines(pos[[1]])
+figlet_font_read <- function(font, path=NULL) {
+  filename <- figlet_font_filename(font, path)
+  str <- readLines(filename, warn=FALSE)
 
   ## Delete *trailing* whitespace.
   last_non_empty <- max(which(str != ""))

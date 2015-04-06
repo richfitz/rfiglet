@@ -2,5 +2,10 @@
 
 S3method(as.character,figlet_string)
 S3method(print,figlet_font)
+S3method(print,figlet_string)
 export(figlet)
 export(figlet_fonts)
+export(install_fonts)
+importFrom(bitops,bitAnd)
+importFrom(bitops,bitOr)
+importFrom(rappdirs,user_data_dir)

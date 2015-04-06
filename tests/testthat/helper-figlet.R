@@ -1,10 +1,7 @@
-cfiglet <- function(str, font=NULL, capture=TRUE) {
-  path <- system.file("fonts", package="rfiglet", mustWork=TRUE)
-  args <- c("-d", path, "-w", 222)
-  if (!is.null(font)) {
-    args <- c(args, "-f", font)
-  }
-  args <- c(args, str)
+cfiglet <- function(str, font="standard", capture=TRUE) {
+  filename <- figlet_font_filename(figlet_font_name(font))
+  filename <- sprintf('"%s"', filename)
+  args <- c("-f", filename, "-w", 222, str)
   system2("figlet/figlet", args, stdout=capture)
 }
 
@@ -17,4 +14,12 @@ skip_if_no_cfiglet <- function() {
     return()
   }
   skip("cfiglet not installed")
+}
+
+trim_left <- function(x) {
+  m <- strsplit(x, NULL)
+  m <- do.call("rbind", m, quote=TRUE)
+  i <- min(which(colSums(m != " ") > 0))
+  m <- m[, i:ncol(m), drop=FALSE]
+  apply(m, 1, paste0, collapse="")
 }
