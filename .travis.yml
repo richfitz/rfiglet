@@ -11,7 +11,7 @@ before_install:
 
 install:
   - ./travis-tool.sh install_deps
-  - cd tests/testthat && ./build_figlet.sh
+  - cd tests/testthat && ./build_figlet.sh; cd ../../
 
 script:
   - ./travis-tool.sh run_tests
