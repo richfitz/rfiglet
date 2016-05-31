@@ -137,15 +137,17 @@ figlet_font_load <- function(data) {
        data=data[-c(1L, is_comment)])
 }
 
-figlet_font_load_char <- function(x, height) {
+figlet_font_load_char <- function(x) {
   re_end_marker <- '.*?(.)\\s*$'
   char <- sub(re_end_marker, "\\1", x[[1]])
   ## Corner case triggered by toilet::emboss
   if (identical(char, "^")) {
     char <- "\\^"
+  } else if (identical(char, "\\")) { # toilet::emboss
+    char <- "\\\\"
   }
   re_end <- sprintf("[%s]{1,2}$", char)
-  sub(re_end, "", x)
+  sub(re_end, "", x, perl=TRUE)
 }
 
 figlet_font_load_characters <- function(data, height) {
@@ -180,7 +182,10 @@ figlet_font_load_characters <- function(data, height) {
     chars[code_extra[keep]] <- char_extra[keep]
   } else {
     ## TODO: get the filename here...
-    warning("Discarding extra characters", immediate.=TRUE)
+    ##
+    ## NOTE: At the moment this is only jiskan16, so making this a
+    ## message rather than a warning.
+    message("Discarding extra characters")
   }
 
   chars
