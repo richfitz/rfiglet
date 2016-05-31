@@ -18,6 +18,9 @@ figlet_font_name <- function(font, collection=NULL) {
       i <- match(font, d$name)
       collection <- d$collection[i]
     }
+    if (is.na(i)) {
+      stop(sprintf("Font %s not found in any collection", font))
+    }
     key <- paste(collection, font, sep="::")
   }
   attr(key, "name") <- font

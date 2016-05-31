@@ -58,3 +58,10 @@ test_that("fonts", {
                      paste0(cmp[[font]], collapse="\n"))
   }
 })
+
+test_that("load nonexistant fonts", {
+  expect_error(figlet("foo", "asfA"), "Font asfA not found")
+  expect_error(figlet("foo", "bdffonts::chartri"), NA)
+  expect_error(figlet("foo", "bdffonts::chartri2"), "Font not found")
+  expect_error(figlet("foo", "bdffonts2::chartri"), "Font not found")
+})
