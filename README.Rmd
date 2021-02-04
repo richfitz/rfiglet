@@ -6,6 +6,7 @@ output: github_document
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
+  error = FALSE,
   collapse = TRUE,
   comment = "#>",
   fig.path = "man/figures/README-",
@@ -48,7 +49,7 @@ rfiglet::figlet_download_fonts()
 ```
 
 ```{r, echo = FALSE, results = "asis"}
-rfiglet::figlet("Instalation", "cosmic")
+rfiglet::figlet("Install", "cosmic")
 ```
 
 ```r

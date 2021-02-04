@@ -6,9 +6,13 @@ output: github_document
 
 
 
-
 ```
-#> Error in loadNamespace(name): there is no package called 'rfiglet'
+       __ _       _      _
+ _ __ / _(_) __ _| | ___| |_
+| '__| |_| |/ _` | |/ _ \ __|
+| |  |  _| | (_| | |  __/ |_
+|_|  |_| |_|\__, |_|\___|\__|
+            |___/
 ```
 
 <!-- badges: start -->
@@ -22,16 +26,45 @@ output: github_document
 
 rfiglet is a pure-R implementation of [FIGlet](https://en.wikipedia.org/wiki/FIGlet) (Frank, Ian and Glenn's letters) a classic system for creating text banners in many fonts.
 
-
 ```
-#> Error in loadNamespace(name): there is no package called 'rfiglet'
+                                  ___
+  .--.,                         ,--.'|_
+,--.'  \   ,---.        ,---,   |  | :,'
+|  | /\/  '   ,'\   ,-+-. /  |  :  : ' :  .--.--.
+:  : :   /   /   | ,--.'|'   |.;__,'  /  /  /    '
+:  | |-,.   ; ,. :|   |  ,"' ||  |   |  |  :  /`./
+|  : :/|'   | |: :|   | /  | |:__,'| :  |  :  ;_
+|  |  .''   | .; :|   | |  | |  '  : |__ \  \    `.
+'  : '  |   :    ||   | |  |/   |  | '.'| `----.   \
+|  | |   \   \  / |   | |--'    ;  :    ;/  /`--'  /
+|  : \    `----'  |   |/        |  ,   /'--'.     /
+|  |,'            '---'          ---`-'   `--'---'
+`--'
 ```
 
 There are many FIGlet compatible fonts; to keep things small, this package only includes the base set included by FIGlet
 
 
 ```
-#> Error in loadNamespace(name): there is no package called 'rfiglet'
+#>  * 3d_diagonal
+#>  * banner
+#>  * big
+#>  * block
+#>  * bubble
+#>  * digital
+#>  * ivrit
+#>  * lean
+#>  * mini
+#>  * mnemonic
+#>  * script
+#>  * shadow
+#>  * slant
+#>  * small
+#>  * smscript
+#>  * smshadow
+#>  * smslant
+#>  * standard
+#>  * term
 ```
 
 However, several hundred extra fonts can be installed using
@@ -40,10 +73,12 @@ However, several hundred extra fonts can be installed using
 rfiglet::figlet_download_fonts()
 ```
 
-
-```
-#> Error in loadNamespace(name): there is no package called 'rfiglet'
-```
+::::::.    :::. .::::::.:::::::::::::::.      :::      :::
+;;;`;;;;,  `;;;;;;`    `;;;;;;;;'''';;`;;     ;;;      ;;;
+[[[  [[[[[. '[['[==/[[[[,    [[    ,[[ '[[,   [[[      [[[
+$$$  $$$ "Y$c$$  '''    $    $$   c$$$cc$$$c  $$'      $$'
+888  888    Y88 88b    dP    88,   888   888,o88oo,.__o88oo,.__
+MMM  MMM     YM  "YMmMY"     MMM   YMM   ""` """"YUMMM""""YUMMM
 
 ```r
 remotes::install_github("richfitz/rfiglet", upgrade = FALSE)
