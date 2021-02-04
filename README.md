@@ -1,7 +1,3 @@
----
-output: github_document
----
-
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 
@@ -73,12 +69,14 @@ However, several hundred extra fonts can be installed using
 rfiglet::figlet_download_fonts()
 ```
 
+```
 ::::::.    :::. .::::::.:::::::::::::::.      :::      :::
 ;;;`;;;;,  `;;;;;;`    `;;;;;;;;'''';;`;;     ;;;      ;;;
 [[[  [[[[[. '[['[==/[[[[,    [[    ,[[ '[[,   [[[      [[[
 $$$  $$$ "Y$c$$  '''    $    $$   c$$$cc$$$c  $$'      $$'
 888  888    Y88 88b    dP    88,   888   888,o88oo,.__o88oo,.__
 MMM  MMM     YM  "YMmMY"     MMM   YMM   ""` """"YUMMM""""YUMMM
+```
 
 ```r
 remotes::install_github("richfitz/rfiglet", upgrade = FALSE)
