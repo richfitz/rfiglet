@@ -1,158 +1,87 @@
-# rfiglet
+<!-- README.md is generated from README.Rmd. Please edit that file -->
 
-[![Build Status](https://travis-ci.org/richfitz/rfiglet.png?branch=master)](https://travis-ci.org/richfitz/rfiglet)
 
+
+```
+       __ _       _      _
+ _ __ / _(_) __ _| | ___| |_
+| '__| |_| |/ _` | |/ _ \ __|
+| |  |  _| | (_| | |  __/ |_
+|_|  |_| |_|\__, |_|\___|\__|
+            |___/
+```
+
+<!-- badges: start -->
+[![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+[![R build status](https://github.com/richfitz/rfiglet/workflows/R-CMD-check/badge.svg)](https://github.com/richfitz/rfiglet/actions)
+[![codecov.io](https://codecov.io/github/richfitz/rfiglet/coverage.svg?branch=master)](https://codecov.io/github/richfitz/rfiglet?branch=master)
+[![CodeFactor](https://www.codefactor.io/repository/github/mrc-ide/odin/badge)](https://www.codefactor.io/repository/github/mrc-ide/odin)
+![works?](https://img.shields.io/badge/works-on%20my%20machine-pink)
+<!-- badges: end -->
+
+
+rfiglet is a pure-R implementation of [FIGlet](https://en.wikipedia.org/wiki/FIGlet) (Frank, Ian and Glenn's letters) a classic system for creating text banners in many fonts.
+
+```
+                                  ___
+  .--.,                         ,--.'|_
+,--.'  \   ,---.        ,---,   |  | :,'
+|  | /\/  '   ,'\   ,-+-. /  |  :  : ' :  .--.--.
+:  : :   /   /   | ,--.'|'   |.;__,'  /  /  /    '
+:  | |-,.   ; ,. :|   |  ,"' ||  |   |  |  :  /`./
+|  : :/|'   | |: :|   | /  | |:__,'| :  |  :  ;_
+|  |  .''   | .; :|   | |  | |  '  : |__ \  \    `.
+'  : '  |   :    ||   | |  |/   |  | '.'| `----.   \
+|  | |   \   \  / |   | |--'    ;  :    ;/  /`--'  /
+|  : \    `----'  |   |/        |  ,   /'--'.     /
+|  |,'            '---'          ---`-'   `--'---'
+`--'
+```
+
+There are many FIGlet compatible fonts; to keep things small, this package only includes the base set included by FIGlet
+
+
+```
+#>  * 3d_diagonal
+#>  * banner
+#>  * big
+#>  * block
+#>  * bubble
+#>  * digital
+#>  * ivrit
+#>  * lean
+#>  * mini
+#>  * mnemonic
+#>  * script
+#>  * shadow
+#>  * slant
+#>  * small
+#>  * smscript
+#>  * smshadow
+#>  * smslant
+#>  * standard
+#>  * term
+```
+
+However, several hundred extra fonts can be installed using
 
 ```r
-message(figlet("FIGlet"))
+rfiglet::figlet_download_fonts()
 ```
 
 ```
-##  _____ ___ ____ _      _
-## |  ___|_ _/ ___| | ___| |_
-## | |_   | | |  _| |/ _ \ __|
-## |  _|  | | |_| | |  __/ |_
-## |_|   |___\____|_|\___|\__|
-##
+::::::.    :::. .::::::.:::::::::::::::.      :::      :::
+;;;`;;;;,  `;;;;;;`    `;;;;;;;;'''';;`;;     ;;;      ;;;
+[[[  [[[[[. '[['[==/[[[[,    [[    ,[[ '[[,   [[[      [[[
+$$$  $$$ "Y$c$$  '''    $    $$   c$$$cc$$$c  $$'      $$'
+888  888    Y88 88b    dP    88,   888   888,o88oo,.__o88oo,.__
+MMM  MMM     YM  "YMmMY"     MMM   YMM   ""` """"YUMMM""""YUMMM
 ```
 
-## Fonts
-
-There are many FIGlet compatible fonts; to keep things small, this package only includes the included by FIGlet
-
-* banner
-* big
-* block
-* bubble
-* digital
-* ivrit
-* lean
-* mini
-* mnemonic
-* script
-* shadow
-* slant
-* small
-* smscript
-* smshadow
-* smslant
-* standard
-* term
-
-## Examples
-
-
+```r
+remotes::install_github("richfitz/rfiglet", upgrade = FALSE)
 ```
-## banner:
-##
-## #####    ##   #    # #    # ###### #####
-## #    #  #  #  ##   # ##   # #      #    #
-## #####  #    # # #  # # #  # #####  #    #
-## #    # ###### #  # # #  # # #      #####
-## #    # #    # #   ## #   ## #      #   #
-## #####  #    # #    # #    # ###### #    #
-##
-## big:
-##  _     _
-## | |   (_)
-## | |__  _  __ _
-## | '_ \| |/ _` |
-## | |_) | | (_| |
-## |_.__/|_|\__, |
-##           __/ |
-##          |___/
-## block:
-##
-## _|        _|                      _|
-## _|_|_|    _|    _|_|      _|_|_|  _|  _|
-## _|    _|  _|  _|    _|  _|        _|_|
-## _|    _|  _|  _|    _|  _|        _|  _|
-## _|_|_|    _|    _|_|      _|_|_|  _|    _|
-##
-##
-## bubble:
-##   _   _   _   _   _   _
-##  / \ / \ / \ / \ / \ / \
-## ( b | u | b | b | l | e )
-##  \_/ \_/ \_/ \_/ \_/ \_/
-## digital:
-## +-+-+-+-+-+-+-+
-## |d|i|g|i|t|a|l|
-## +-+-+-+-+-+-+-+
-## ivrit:
-##   _   _
-##  | |_(_)_
-##  | __| | '
-##  | |_| | |
-##   \__|_|_|
-##
-## lean:
-##
-##     _/
-##    _/    _/_/      _/_/_/  _/_/_/
-##   _/  _/_/_/_/  _/    _/  _/    _/
-##  _/  _/        _/    _/  _/    _/
-## _/    _/_/_/    _/_/_/  _/    _/
-##
-##
-## mini:
-##
-## ._ _ o._ o
-## | | ||| ||
-##
-## mnemonic:
-## mnemonic
-## script:
-##
-##                o
-##  ,   __   ,_        _ _|_
-## / \_/    /  |  |  |/ \_|
-##  \/ \___/   |_/|_/|__/ |_/
-##                  /|
-##                  \|
-## shadow:
-##       |               |
-##   __| __ \   _` |  _` |  _ \\ \  \   /
-## \__ \ | | | (   | (   | (   |\ \  \ /
-## ____/_| |_|\__,_|\__,_|\___/  \_/\_/
-##
-## slant:
-##          __            __
-##    _____/ /___ _____  / /_
-##   / ___/ / __ `/ __ \/ __/
-##  (__  ) / /_/ / / / / /_
-## /____/_/\__,_/_/ /_/\__/
-##
-## small:
-##                _ _
-##  ____ __  __ _| | |
-## (_-< '  \/ _` | | |
-## /__/_|_|_\__,_|_|_|
-##
-## smscript:
-##
-##  ,           ,   _   ,_  o    _|_
-## / \_/|/|/|  / \_/   /  | | |/\_|
-##  \/  | | |_/ \/ \__/   |/|/|_/ |_/
-##                           (|
-## smshadow:
-##                |              |
-## (_-<  ` \ (_-<   \   _` |  _` |  _ \\ \  \ /
-## ___/_|_|_|___/_| _|\__,_|\__,_|\___/ \_/\_/
-##
-## smslant:
-##                  __          __
-##   ___ __ _  ___ / /__ ____  / /_
-##  (_-</  ' \(_-</ / _ `/ _ \/ __/
-## /___/_/_/_/___/_/\_,_/_//_/\__/
-##
-## standard:
-##      _                  _               _
-##  ___| |_ __ _ _ __   __| | __ _ _ __ __| |
-## / __| __/ _` | '_ \ / _` |/ _` | '__/ _` |
-## \__ \ || (_| | | | | (_| | (_| | | | (_| |
-## |___/\__\__,_|_| |_|\__,_|\__,_|_|  \__,_|
-##
-## term:
-## term
-```
+
+## License
+
+MIT © Richard G. FitzJohn

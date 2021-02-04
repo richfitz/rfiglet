@@ -1,41 +1,57 @@
-# rfiglet
+<!-- README.md is generated from README.Rmd. Please edit that file -->
 
-[![Build Status](https://travis-ci.org/richfitz/rfiglet.png?branch=master)](https://travis-ci.org/richfitz/rfiglet)
-
-```{r}
-message(figlet("FIGlet"))
-```
-
-## Fonts
-
-There are many FIGlet compatible fonts; to keep things small, this package only includes the included by FIGlet
-
-* banner
-* big
-* block
-* bubble
-* digital
-* ivrit
-* lean
-* mini
-* mnemonic
-* script
-* shadow
-* slant
-* small
-* smscript
-* smshadow
-* smslant
-* standard
-* term
-
-You can install an additional `r length(figlet_fonts()) - length(figlet_base_fonts())` fonts from [this repo](https://github.com/cmatsuoka/figlet-fonts) by using `rfiglet::install_fonts()`; this will take about 85MB of disk space.
-
-## Examples
-
-```{r, echo=FALSE}
-for (font in figlet_base_fonts()) {
-  message(font, ":")
-  message(figlet(font, font))
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  error = FALSE,
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+code_output <- function(x) {
+  writeLines(c("```", x, "```"))
 }
 ```
+
+```{r, echo = FALSE, results = "asis"}
+code_output(rfiglet::figlet("rfiglet"))
+```
+
+<!-- badges: start -->
+[![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+[![R build status](https://github.com/richfitz/rfiglet/workflows/R-CMD-check/badge.svg)](https://github.com/richfitz/rfiglet/actions)
+[![codecov.io](https://codecov.io/github/richfitz/rfiglet/coverage.svg?branch=master)](https://codecov.io/github/richfitz/rfiglet?branch=master)
+[![CodeFactor](https://www.codefactor.io/repository/github/mrc-ide/odin/badge)](https://www.codefactor.io/repository/github/mrc-ide/odin)
+![works?](https://img.shields.io/badge/works-on%20my%20machine-pink)
+<!-- badges: end -->
+
+
+rfiglet is a pure-R implementation of [FIGlet](https://en.wikipedia.org/wiki/FIGlet) (Frank, Ian and Glenn's letters) a classic system for creating text banners in many fonts.
+
+```{r, echo = FALSE, results = "asis"}
+code_output(rfiglet::figlet("fonts", "3d_diagonal"))
+```
+
+There are many FIGlet compatible fonts; to keep things small, this package only includes the base set included by FIGlet
+
+```{r, echo = FALSE, results = "as-is"}
+writeLines(paste(" *", rfiglet::figlet_font_list()))
+```
+
+However, several hundred extra fonts can be installed using
+
+```r
+rfiglet::figlet_download_fonts()
+```
+
+```{r, echo = FALSE, results = "asis"}
+code_output(rfiglet::figlet("Install", "cosmic"))
+```
+
+```r
+remotes::install_github("richfitz/rfiglet", upgrade = FALSE)
+```
+
+## License
+
+MIT © Richard G. FitzJohn
