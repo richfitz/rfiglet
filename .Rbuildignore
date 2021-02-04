@@ -1,5 +1,5 @@
-^\.travis\.yml$
 ^Makefile$
-^tests/testthat/figlet.*$
-^build_sysdata\.R$
+^extra$
+^scripts$
+^\.lintr$
 ^README\.Rmd$

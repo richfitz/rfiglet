@@ -1,0 +1,91 @@
+---
+title: "rfiglet"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{rfiglet}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+code_output <- function(x) {
+  writeLines(c("```", x, "```"))
+}
+```
+
+```{r, echo = FALSE, results = "asis"}
+code_output(rfiglet::figlet("rfiglet!"))
+```
+
+rfiglet is a pure-R implementation of [FIGlet](https://en.wikipedia.org/wiki/FIGlet) (Frank, Ian and Glenn's letters) a classic system for creating text banners in many fonts.
+
+The core of the package is the `rfiglet::figlet` function, which renders a string in a figlet font (by default `standard`)
+
+```{r}
+rfiglet::figlet("Hello world!")
+```
+
+There are `r length(rfiglet::figlet_font_list())` bundled fonts, representing the standard figlet font library
+
+```{r}
+rfiglet::figlet_font_list()
+```
+
+Pass the name of the font to `rfiglet::figlet` to use it
+
+```{r}
+rfiglet::figlet("Hello shadow!", font = "shadow")
+```
+
+## More fonts!
+
+There are *many* more fonts available, and these can be downloaded by running
+
+```{r, results = "hide"}
+path <- rfiglet::figlet_download_fonts()
+```
+
+This will download all the extra fonts to wherever `RFIGLET_FONT_DIR` points, falling back on the cache directory `tools::R_user_dir("rfiglet", "data"` in R 4.0.0 or higher
+
+```{r}
+dir(path)
+```
+
+Once downloaded you can reference these fonts by name (i.e., filename without the extension)
+
+```{r}
+rfiglet::figlet("Extra!", font = "acrobatic.flf")
+```
+
+## Layout
+
+Some degree of layout conrol is available via the arguments `justify` and `width`, powered by R's `strwrap` and `format` options. By default lines are broken at the width of your terminal (`getOption("width")`) but you can override this.
+
+If a string is too long it will be wrapped to fit:
+
+```{r}
+rfiglet::figlet("A quick brown fox", width = 45)
+```
+
+You can align the fragments relative to each other using `justify`:
+
+```{r}
+rfiglet::figlet("A quick brown fox", width = 45, justify = "centre")
+```
+
+Or relative to the entire width by adding `absolute = TRUE`
+
+```{r}
+rfiglet::figlet("A quick brown fox", width = 45, justify = "centre",
+                absolute = TRUE)
+```
+
+The latter option is more obvious with a longer width or shorter text
+
+```{r}
+rfiglet::figlet("right", justify = "right", absolute = TRUE)
+```

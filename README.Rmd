@@ -1,41 +1,55 @@
-# rfiglet
+---
+output: github_document
+---
 
-[![Build Status](https://travis-ci.org/richfitz/rfiglet.png?branch=master)](https://travis-ci.org/richfitz/rfiglet)
+<!-- README.md is generated from README.Rmd. Please edit that file -->
 
-```{r}
-message(figlet("FIGlet"))
-```
-
-## Fonts
-
-There are many FIGlet compatible fonts; to keep things small, this package only includes the included by FIGlet
-
-* banner
-* big
-* block
-* bubble
-* digital
-* ivrit
-* lean
-* mini
-* mnemonic
-* script
-* shadow
-* slant
-* small
-* smscript
-* smshadow
-* smslant
-* standard
-* term
-
-You can install an additional `r length(figlet_fonts()) - length(figlet_base_fonts())` fonts from [this repo](https://github.com/cmatsuoka/figlet-fonts) by using `rfiglet::install_fonts()`; this will take about 85MB of disk space.
-
-## Examples
-
-```{r, echo=FALSE}
-for (font in figlet_base_fonts()) {
-  message(font, ":")
-  message(figlet(font, font))
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+code_output <- function(x) {
+  writeLines(c("```", x, "```"))
 }
 ```
+
+```{r, echo = FALSE, results = "asis"}
+code_output(rfiglet::figlet("rfiglet"))
+```
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+
+rfiglet is a pure-R implementation of [FIGlet](https://en.wikipedia.org/wiki/FIGlet) (Frank, Ian and Glenn's letters) a classic system for creating text banners in many fonts.
+
+```{r, echo = FALSE, results = "asis"}
+code_output(rfiglet::figlet("fonts", "3d_diagonal"))
+```
+
+There are many FIGlet compatible fonts; to keep things small, this package only includes the base set included by FIGlet
+
+```{r, echo = FALSE, results = "as-is"}
+writeLines(paste(" *", rfiglet::figlet_font_list()))
+```
+
+However, several hundred extra fonts can be installed using
+
+```r
+rfiglet::figlet_download_fonts()
+```
+
+```{r, echo = FALSE, results = "asis"}
+rfiglet::figlet("Instalation", "cosmic")
+```
+
+```r
+remotes::install_github("richfitz/rfiglet", upgrade = FALSE)
+```
+
+## License
+
+MIT © Richard G. FitzJohn

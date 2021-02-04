@@ -1,158 +1,49 @@
-# rfiglet
+---
+output: github_document
+---
 
-[![Build Status](https://travis-ci.org/richfitz/rfiglet.png?branch=master)](https://travis-ci.org/richfitz/rfiglet)
+<!-- README.md is generated from README.Rmd. Please edit that file -->
 
+
+
+
+```
+#> Error in loadNamespace(name): there is no package called 'rfiglet'
+```
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+
+rfiglet is a pure-R implementation of [FIGlet](https://en.wikipedia.org/wiki/FIGlet) (Frank, Ian and Glenn's letters) a classic system for creating text banners in many fonts.
+
+
+```
+#> Error in loadNamespace(name): there is no package called 'rfiglet'
+```
+
+There are many FIGlet compatible fonts; to keep things small, this package only includes the base set included by FIGlet
+
+
+```
+#> Error in loadNamespace(name): there is no package called 'rfiglet'
+```
+
+However, several hundred extra fonts can be installed using
 
 ```r
-message(figlet("FIGlet"))
+rfiglet::figlet_download_fonts()
 ```
-
-```
-##  _____ ___ ____ _      _
-## |  ___|_ _/ ___| | ___| |_
-## | |_   | | |  _| |/ _ \ __|
-## |  _|  | | |_| | |  __/ |_
-## |_|   |___\____|_|\___|\__|
-##
-```
-
-## Fonts
-
-There are many FIGlet compatible fonts; to keep things small, this package only includes the included by FIGlet
-
-* banner
-* big
-* block
-* bubble
-* digital
-* ivrit
-* lean
-* mini
-* mnemonic
-* script
-* shadow
-* slant
-* small
-* smscript
-* smshadow
-* smslant
-* standard
-* term
-
-## Examples
 
 
 ```
-## banner:
-##
-## #####    ##   #    # #    # ###### #####
-## #    #  #  #  ##   # ##   # #      #    #
-## #####  #    # # #  # # #  # #####  #    #
-## #    # ###### #  # # #  # # #      #####
-## #    # #    # #   ## #   ## #      #   #
-## #####  #    # #    # #    # ###### #    #
-##
-## big:
-##  _     _
-## | |   (_)
-## | |__  _  __ _
-## | '_ \| |/ _` |
-## | |_) | | (_| |
-## |_.__/|_|\__, |
-##           __/ |
-##          |___/
-## block:
-##
-## _|        _|                      _|
-## _|_|_|    _|    _|_|      _|_|_|  _|  _|
-## _|    _|  _|  _|    _|  _|        _|_|
-## _|    _|  _|  _|    _|  _|        _|  _|
-## _|_|_|    _|    _|_|      _|_|_|  _|    _|
-##
-##
-## bubble:
-##   _   _   _   _   _   _
-##  / \ / \ / \ / \ / \ / \
-## ( b | u | b | b | l | e )
-##  \_/ \_/ \_/ \_/ \_/ \_/
-## digital:
-## +-+-+-+-+-+-+-+
-## |d|i|g|i|t|a|l|
-## +-+-+-+-+-+-+-+
-## ivrit:
-##   _   _
-##  | |_(_)_
-##  | __| | '
-##  | |_| | |
-##   \__|_|_|
-##
-## lean:
-##
-##     _/
-##    _/    _/_/      _/_/_/  _/_/_/
-##   _/  _/_/_/_/  _/    _/  _/    _/
-##  _/  _/        _/    _/  _/    _/
-## _/    _/_/_/    _/_/_/  _/    _/
-##
-##
-## mini:
-##
-## ._ _ o._ o
-## | | ||| ||
-##
-## mnemonic:
-## mnemonic
-## script:
-##
-##                o
-##  ,   __   ,_        _ _|_
-## / \_/    /  |  |  |/ \_|
-##  \/ \___/   |_/|_/|__/ |_/
-##                  /|
-##                  \|
-## shadow:
-##       |               |
-##   __| __ \   _` |  _` |  _ \\ \  \   /
-## \__ \ | | | (   | (   | (   |\ \  \ /
-## ____/_| |_|\__,_|\__,_|\___/  \_/\_/
-##
-## slant:
-##          __            __
-##    _____/ /___ _____  / /_
-##   / ___/ / __ `/ __ \/ __/
-##  (__  ) / /_/ / / / / /_
-## /____/_/\__,_/_/ /_/\__/
-##
-## small:
-##                _ _
-##  ____ __  __ _| | |
-## (_-< '  \/ _` | | |
-## /__/_|_|_\__,_|_|_|
-##
-## smscript:
-##
-##  ,           ,   _   ,_  o    _|_
-## / \_/|/|/|  / \_/   /  | | |/\_|
-##  \/  | | |_/ \/ \__/   |/|/|_/ |_/
-##                           (|
-## smshadow:
-##                |              |
-## (_-<  ` \ (_-<   \   _` |  _` |  _ \\ \  \ /
-## ___/_|_|_|___/_| _|\__,_|\__,_|\___/ \_/\_/
-##
-## smslant:
-##                  __          __
-##   ___ __ _  ___ / /__ ____  / /_
-##  (_-</  ' \(_-</ / _ `/ _ \/ __/
-## /___/_/_/_/___/_/\_,_/_//_/\__/
-##
-## standard:
-##      _                  _               _
-##  ___| |_ __ _ _ __   __| | __ _ _ __ __| |
-## / __| __/ _` | '_ \ / _` |/ _` | '__/ _` |
-## \__ \ || (_| | | | | (_| | (_| | | | (_| |
-## |___/\__\__,_|_| |_|\__,_|\__,_|_|  \__,_|
-##
-## term:
-## term
+#> Error in loadNamespace(name): there is no package called 'rfiglet'
 ```
+
+```r
+remotes::install_github("richfitz/rfiglet", upgrade = FALSE)
+```
+
+## License
+
+MIT © Richard G. FitzJohn

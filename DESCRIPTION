@@ -1,10 +1,21 @@
 Package: rfiglet
-Title: Port of FIGlet to R
-Version: 0.1.0
-Authors@R: "Rich FitzJohn <rich.fitzjohn@gmail.com> [aut, cre]"
-Description: Embiggens letters
-Depends: R (>= 3.1.2)
-License: GPL-2
+Title: Port of 'FIGlet' to R
+Version: 0.2.0
+Authors@R:
+    person(given = "Rich",
+           family = "FitzJohn",
+           role = c("aut", "cre"),
+           email = "rich.fitzjohn@gmail.com")
+Description: What the package does (one paragraph).
+License: MIT + file LICENSE
 LazyData: true
-Imports: bitops, rappdirs
-Suggests: testthat, downloader
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Encoding: UTF-8
+Language: en-GB
+Suggests:
+    knitr,
+    mockery,
+    rmarkdown,
+    testthat
+VignetteBuilder: knitr
