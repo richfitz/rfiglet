@@ -21,7 +21,7 @@ code_output(rfiglet::figlet("rfiglet"))
 [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 [![R build status](https://github.com/richfitz/rfiglet/workflows/R-CMD-check/badge.svg)](https://github.com/richfitz/rfiglet/actions)
 [![codecov.io](https://codecov.io/github/richfitz/rfiglet/coverage.svg?branch=master)](https://codecov.io/github/richfitz/rfiglet?branch=master)
-[![CodeFactor](https://www.codefactor.io/repository/github/richftz/rfiglet/badge)](https://www.codefactor.io/repository/github/richftz/rfiglet)
+[![CodeFactor](https://www.codefactor.io/repository/github/richfitz/rfiglet/badge)](https://www.codefactor.io/repository/github/richfitz/rfiglet)
 ![works?](https://img.shields.io/badge/works-on%20my%20machine-pink)
 <!-- badges: end -->
 
